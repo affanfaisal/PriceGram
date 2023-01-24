@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Products</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+        rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/assets/img/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/products.css" rel="stylesheet" />
+</head>
+
+<body>
+    <%-include("partials/navbar.ejs")%>
+        <br>
+        <div class="text-center text-white">
+            <form method="GET" action="/products" class="form-subscribe">
+                <input name="category" type="hidden" value="<%=category%>">
+                <input name="vendor" type="hidden" value="<%=vendor%>">
+                <div class="row justify-content-center">
+                    <%-include("partials/searchbar.ejs")%>
+                        <div class="col-1">
+                            <button class="btn btn-primary btn-lg" id="submitButton" type="submit"><i
+                                    class="bi bi-search"></i></button>
+                        </div>
+                       
+                </div>
+            </form>
+        </div>
+
+    <div class="row">
+        <div class="col d-flex justify-content-between"  style="margin-left: 100px;">
+           <div>
+            <%if(vendor_name){%>
+                <a href="/products?vendor=<%=vendor%>" style="color: black; text-decoration: none;"><%=vendor_name%></a>
+                <i class="bi bi-chevron-right"></i>
+            <%}%>
+            <%if(category_name){%>
+                <a href="/products?category=<%=category%>" style="color: black; text-decoration: none;"><%=category_name%></a>
+                <i class="bi bi-chevron-right"></i>
+            <%}%>
+           </div>
+        </div>
+    
+        <div class="col d-flex justify-content-between">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Sort
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/products?category=<%=category%>&q=<%=q%>&vendor=<%=vendor%>&sort=3">Top Rated</a>
+                  <a class="dropdown-item" href="/products?category=<%=category%>&q=<%=q%>&vendor=<%=vendor%>&sort=2">Price high-to-low</a>
+                  <a class="dropdown-item" href="/products?category=<%=category%>&q=<%=q%>&vendor=<%=vendor%>&sort=1">Price low-to-high</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Section-->
+        <section class="py-5">
+            <div class="row" style="font-size: 12px;">
+                <div class="col-2">
+                    <div class="card" style="width: 180px;">
+                        <ul class="list-group list-group-flush">
+                            <li style="font-weight: bold;" class="list-group-item">Category</li>
+                            <li class="list-group-item"><a href="/products?category=2&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">Computer & Gaming</a></li>
+                            <li class="list-group-item"><a href="/products?category=8&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">Keyboards</a></li>
+                            <li class="list-group-item"><a href="/products?category=7&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">Graphic Cards</a></li>
+                            <li class="list-group-item"><a href="/products?category=0&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">Mobiles & Tablets</a></li>
+                            <li class="list-group-item"><a href="/products?category=1&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">TV & Video</a></li>
+                            <li class="list-group-item"><a href="/products?category=6&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">Mouses</a></li>
+                            <li class="list-group-item"><a href="/products?category=4&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">Cases & Covers</a></li>
+                            <li class="list-group-item"><a href="/products?category=5&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">Kids</a></li>
+                            <li class="list-group-item"><a href="/products?category=3&q=<%=q%>&vendor=<%=vendor%>"
+                                    style="text-decoration: none; color: black">Home Audio & Theatre</a></li>
+                        </ul>
+                    </div>
+                    <br>
+                    <div class="card" style="width: 180px;">
+                        <ul class="list-group list-group-flush">
+                            <li style="font-weight: bold;" class="list-group-item">Vendor</li>
+                            <li class="list-group-item"><a href="/products?category=<%=category%>&q=<%=q%>&vendor=0"
+                                    style="text-decoration: none; color: black">Telemart</a></li>
+                            <li class="list-group-item"><a href="/products?category=<%=category%>&q=<%=q%>&vendor=1"
+                                    style="text-decoration: none; color: black">Daraz</a></li>
+                            <li class="list-group-item"><a href="/products?category=<%=category%>&q=<%=q%>&vendor=2"
+                                    style="text-decoration: none; color: black">Amazon</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col container px-4 px-lg-5 mt-5">
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        <% products.forEach(function(product){ %>
+                            <div class="col mb-5">
+                                <a class="item-link" href="/item/<%=product.id%>"
+                                    style="text-decoration: none; color: black">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src=<%=product.mainImageLink%>
+                                        alt="..." />
+                                        <div class="card-body p-4 text-center">
+                                            <h5 class="fw-semibold">
+                                                <%=product.title.slice(0,100)%>
+                                            </h5>
+                                            <%if(product.discountedPrice){%>
+                                                <div id="price" class="fs-5 mb-6">
+                                                    <span class="text-decoration-line-through">
+                                                        Rs. <%=product.price %>
+                                                    </span>
+                                                    <span class="fs-5" style="color:rgb(249, 78, 16); font-weight:700;">
+                                                        &#160 Rs. <%=product.discountedPrice%>
+                                                    </span>
+                                                    <br>
+                                                </div>
+                                                <%}else{%>
+                                                    <div id="price" class="fs-5 mb-5"
+                                                        style="color:rgb(249, 78, 16); font-weight:700;">
+                                                        <span class="fs-5">
+                                                            Rs. <%=product.price%>
+                                                        </span>
+                                                    </div>
+                                                    <%}%>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <%});%>
+                    </div>
+                    <div class="float-right">
+                        <nav aria-label="...">
+                            <ul class="pagination pagination-m">
+                                <li class="page-item"><a class="page-link"
+                                        href="/products?category=<%=category%>&q=<%=q%>&page=1&vendor=<%=vendor%>">
+                                        <<< /a>
+                                <li class="page-item"><a class="page-link"
+                                        href="/products?category=<%=category%>&q=<%=q%>&page=1&vendor=<%=vendor%>">1</a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                        href="/products?category=<%=category%>&q=<%=q%>&page=2&vendor=<%=vendor%>">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                        href="/products?category=<%=category%>&q=<%=q%>&page=3&vendor=<%=vendor%>">3</a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                        href="/products?category=<%=category%>&q=<%=q%>&page=4&vendor=<%=vendor%>">4</a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                        href="/products?category=<%=category%>&q=<%=q%>&page=5&vendor=<%=vendor%>">5</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">>></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <%-include("partials/footer.ejs")%>
+        <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="/js/products.js"></script>
+        <script src="/js/dashboard.js"></script>
+</body>
+
+</html>
